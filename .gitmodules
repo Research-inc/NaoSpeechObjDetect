@@ -1,0 +1,6 @@
+[submodule "src/modules/SpeechRec"]
+	path = src/modules/SpeechRec
+	url = git@github.com:Research-inc/SpeechRec.git
+[submodule "src/modules/objectdetect"]
+	path = src/modules/objectdetect
+	url = git@github.com:Research-inc/objectdetect.git
