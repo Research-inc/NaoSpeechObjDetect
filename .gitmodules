@@ -4,3 +4,6 @@
 [submodule "src/modules/objectdetect"]
 	path = src/modules/objectdetect
 	url = git@github.com:Research-inc/objectdetect.git
+[submodule "src/modules/naomove"]
+	path = src/modules/naomove
+	url = git@github.com:Research-inc/naomove.git
