@@ -1,0 +1,2 @@
+from .objectdetect import detectWithSearchName
+from .SpeechRec import generateTextFromSpeech
