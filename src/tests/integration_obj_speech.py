@@ -6,4 +6,4 @@ from modules import detectWithSearchName, generateTextFromSpeech
 
 query = generateTextFromSpeech().lower()
 
-detectWithSearchName('object.jpg', str(query))
+quad = detectWithSearchName('object.jpg', str(query))

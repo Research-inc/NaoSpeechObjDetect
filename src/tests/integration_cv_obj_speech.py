@@ -28,7 +28,7 @@ while True:
     if not query:
         query = generateTextFromSpeech().lower()
     else:
-        detectWithSearchName('output.jpg', str(query))
+        quad = detectWithSearchName('output.jpg', str(query))
         frame = cv.imread("result.jpg")
 
 
