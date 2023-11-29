@@ -1,7 +1,7 @@
 import sys
 sys.path.append("../")
 
-from modules import detectWithSearchName, generateTextFromSpeech
+from modules import detectWithSearchName, generateTextFromSpeech, writeCommunicator
 
 import numpy as np
 import cv2 as cv
@@ -29,10 +29,12 @@ while True:
         query = generateTextFromSpeech().lower()
     else:
         quad = detectWithSearchName('output.jpg', str(query))
-        frame = cv.imread("result.jpg") #write the detected object back to frame
+        if quad is not None: #to check if the object is detected or not. If detected, there will be some value
+            frame = cv.imread("result.jpg")
+            writeCommunicator(quad) #write which quad is it to the communicator module
 
 
-    # Display the resulting frame : imshow()
+    # Display the resulting frame
     cv.imshow('frame', frame)
 
     if cv.waitKey(1) == ord('q'):

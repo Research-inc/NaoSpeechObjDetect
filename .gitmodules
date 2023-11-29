@@ -7,3 +7,6 @@
 [submodule "src/modules/naomove"]
 	path = src/modules/naomove
 	url = git@github.com:Research-inc/naomove.git
+[submodule "src/modules/communicator"]
+	path = src/modules/communicator
+	url = git@github.com:Research-inc/communicator.git
