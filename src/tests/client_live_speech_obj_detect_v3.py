@@ -5,24 +5,24 @@ from modules import detectWithSearchName_v2, isObjectPresent, magnifier, closene
 
 import numpy as np
 import cv2 as cv
-
+import time
 query = generateTextFromSpeech().lower()
 
 prev_height = None
 new_height = None
 prev_detect = None
-prev_direction = None
+prev_direction = "partialright"
 num_failed_detects = 0
 
 def directionHelper(quad):
     if quad == "first":
-        direction = "angleright"
+        direction = "partialright"
     elif quad == "second":
-        direction = "right"
+        direction = "partialright"
     elif quad == "third":
-        direction = "left"
+        direction = "partialleft"
     else:
-        direction = "angleleft"
+        direction = "partialleft"
     return direction
 
 
@@ -50,36 +50,15 @@ while True:
         frame = cv.imread("result.jpg")
         prev_detect = True
         num_failed_detects = 0
-        if prev_height is None:
-            prev_height = height
-            new_height = height
-            prev_direction = directionHelper(quad)
-        else:
-            prev_height = new_height
-            new_height = height
-            direction = directionHelper(quad)
-            prev_direction = direction
-            #magnifier
-            magnification = magnifier(prev_height, new_height)
-            writeCommunicator(direction)
-            if direction == "left" or direction == "right":
-                if magnification < 1.5:
-                    writeCommunicator("forward")#write which quad is it to the communicator module
+        writeCommunicator("forward")
+        prev_direction = directionHelper(quad)
+        time.sleep(2)
+
     else:
-        #if prev_detect:
-        #    if prev_direction == "left":
-        #        writeCommunicator("partialleft")
-        #    elif prev_direction == "right":
-        #        writeCommunicator("partialrigh")
-
-        prev_detect = False
-
-        #if num_failed_detects < 4:
-         #   if prev_direction == "right" or prev_direction == "angleright":
-          #      writeCommunicator("perpleft")
-           # elif prev_direction == "left" or prev_direction == "angleleft":
-            #    writeCommunicator("perpright")
-            #num_failed_detects += 1
+        if num_failed_detects < 12:
+            writeCommunicator(prev_direction)
+            time.sleep(2)
+            num_failed_detects += 1
 
     # Display the resulting frame
     cv.imshow('frame', frame)
